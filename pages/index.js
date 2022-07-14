@@ -30,9 +30,10 @@ export default function Home() {
     userSession
   };
 
-  let address;
+  let address, senderKey;
   try {
     address = userSession.loadUserData().profile?.stxAddress?.testnet;
+    senderKey = userSession.loadUserData().appPrivateKey;
   } catch(e) {}
 
   console.log(address);
@@ -76,7 +77,7 @@ export default function Home() {
             <Input placeholder='Destination Address' onChange={setDestAddr} value={destAddr}/>
           </div>
           <button className="w-full bg-[#5493f7] text-[14px] h-[48px] rounded-full mt-[40px]"
-            onClick={() => transferNFT(address, nftId)}>
+            onClick={() => transferNFT(address, nftId, destAddr, senderKey)}>
             Transfer
           </button>
         </div>
