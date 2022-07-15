@@ -34,9 +34,11 @@ export default function Home() {
   try {
     address = userSession.loadUserData().profile?.stxAddress?.testnet;
     senderKey = userSession.loadUserData().appPrivateKey;
+    console.log(userSession.loadUserData());
   } catch(e) {}
 
-  console.log(address);
+  console.log("address, senderKey", address, senderKey);
+  
 
   return (
     <div className='bg-black w-full min-h-screen flex justify-center'>

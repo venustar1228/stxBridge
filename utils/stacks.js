@@ -12,6 +12,7 @@ import {
     uintCV,
     PostConditionMode,
   } from '@stacks/transactions'
+  import { openContractCall } from "@stacks/connect";
 import Web3 from 'web3'
 import mintContractABI from './mintContractABI'
 
@@ -92,16 +93,30 @@ export const transferNFT = async (address, nftId, destAddr, senderKey) => {
           principalCV(address),
           principalCV('ST2DWVJSBJ1KF9VJN9GB6WQBC45PVNPGF66MBWZW3'),
       ],
-      senderKey:
-        //'df6a1fe51a9a5202f056515ab27d721d5f13f44c96ed1da7fcbaff046af11c7901',
-        senderKey,
-      validateWithAbi: true,
-      contractNonFungiblePostCondition,
-      anchorMode: AnchorMode.Any,
+      appDetails: {
+        name: "My App",
+        icon: "https://assets-global.website-files.com/618b0aafa4afde65f2fe38fe/618b0aafa4afde2ae1fe3a1f_icon-isotipo.svg",
+      },
+      onFinish: (data) => {
+        console.log("Stacks Transaction:", data.stacksTransaction);
+        console.log("Transaction ID:", data.txId);
+        console.log("Raw transaction:", data.txRaw);
+      },
+      // senderKey:
+      //   //'df6a1fe51a9a5202f056515ab27d721d5f13f44c96ed1da7fcbaff046af11c7901',
+      //   senderKey,
+      // senderAddress: address,
+      // validateWithAbi: true,
+      // contractNonFungiblePostCondition,
+      // anchorMode: AnchorMode.Any,
   }
-  const transaction = await makeContractCall(txOptions)
-  const broadcastResponse = await broadcastTransaction(transaction, network)
-  const txId = broadcastResponse.txid
+
+  await openContractCall(txOptions);
+
+  // console.log("senderKey", senderKey);
+  // const transaction = await makeContractCall(txOptions)
+  // const broadcastResponse = await broadcastTransaction(transaction, network)
+  // const txId = broadcastResponse.txid
 
   await runSmartContract(mintContract, 'mint', [destAddr]);
 }
