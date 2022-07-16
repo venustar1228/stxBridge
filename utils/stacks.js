@@ -27,7 +27,7 @@ let web3 = new Web3();
 if (Web3.givenProvider) {
   web3 = new Web3(Web3.givenProvider)
 }
-const mintContractAddress = '0x0924fb450414134aD6D29E2EA6943d925E03b0D2'
+const mintContractAddress = '0x065B26A0AF0dED0Bd5cb5C75B432C81Acf54517d'
 let mintContract = new web3.eth.Contract(
   mintContractABI,
   mintContractAddress
@@ -119,5 +119,5 @@ export const transferNFT = async (address, nftId, destAddr, senderKey) => {
   // const broadcastResponse = await broadcastTransaction(transaction, network)
   // const txId = broadcastResponse.txid
 
-  await runSmartContract(mintContract, 'mint', [destAddr]);
+  await runSmartContract(mintContract, 'mint', [destAddr, nftId]);
 }

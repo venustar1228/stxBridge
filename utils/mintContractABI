@@ -184,6 +184,11 @@ export default [
         "internalType": "address",
         "name": "mintAddress",
         "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "count",
+        "type": "uint256"
       }
     ],
     "name": "mint",
