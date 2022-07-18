@@ -5,6 +5,7 @@ import { transferNFT, userSession } from "../utils/stacks";
 import { useConnect } from "@stacks/connect-react"
 
 import _ from 'lodash'
+// start
 
 export default function Home() {
 
