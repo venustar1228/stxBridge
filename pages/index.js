@@ -6,6 +6,7 @@ import { useConnect } from "@stacks/connect-react"
 
 import _ from 'lodash'
 // start
+// end
 
 export default function Home() {
 
@@ -58,8 +59,8 @@ export default function Home() {
           address &&
           <button className='text-[13px] bg-[#5493f7] h-[30px] w-[130px] rounded-full outline-none'
             onClick={() => { userSession.signUserOut(); reload(); }}
-          >
-            { _.truncate(address, { length: 10}) + address.substr(address.length - 5)}
+          >length
+            { _.truncate(address, { : 10}) + address.substr(address.length - 5)}
           </button>
           }
         </div>
